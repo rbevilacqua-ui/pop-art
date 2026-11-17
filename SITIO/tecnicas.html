@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Técnicas - Pop Art</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background-color:#ffe600;
+      background-image:
+        linear-gradient(45deg, rgba(255,0,92,0.12) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(0,153,255,0.12) 25%, transparent 25%),
+        radial-gradient(circle, rgba(0,0,0,0.10) 2px, transparent 3px);
+      background-size:38px 38px, 38px 38px, 22px 22px;
+    }
+
+    .menu{
+      background:black;
+      padding:20px;
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    .menu a{
+      text-decoration:none;
+      color:white;
+      background:#ff0066;
+      padding:13px 22px;
+      font-weight:900;
+      border:4px solid black;
+      box-shadow:5px 5px 0 #ffe600;
+      font-size:15px;
+    }
+
+    .menu a:nth-child(2){background:#ff7a00;}
+    .menu a:nth-child(3){background:#ffe600;color:black;}
+    .menu a:nth-child(4){background:#6c00ff;}
+    .menu a:nth-child(5){background:#0099ff;}
+    .menu a:nth-child(6){background:#ff0066;}
+
+    .mini-login{
+      background:white !important;
+      color:black !important;
+      font-size:13px !important;
+    }
+
+    .seccion{
+      padding:45px 6%;
+    }
+
+    h2{
+      font-size:36px;
+      font-weight:900;
+      border-bottom:5px solid black;
+      padding-bottom:12px;
+      margin:0 0 28px;
+    }
+
+    .subtitulo{
+      color:#ff0066;
+      font-size:24px;
+      font-weight:900;
+      margin:35px 0 22px;
+    }
+
+    .tecnica-card{
+      border:5px solid black;
+      box-shadow:8px 8px 0 black;
+      padding:22px;
+      margin-bottom:28px;
+      display:grid;
+      grid-template-columns:220px 1fr;
+      gap:28px;
+      align-items:center;
+      cursor:pointer;
+      transition:0.2s;
+    }
+
+    .tecnica-card:hover{
+      transform:translateY(-5px);
+    }
+
+    .tecnica-card img{
+      width:220px;
+      height:150px;
+      object-fit:cover;
+      border:4px solid black;
+      display:block;
+      cursor:pointer;
+    }
+
+    .tecnica-card h3{
+      font-size:22px;
+      margin:0 0 10px;
+      color:white;
+      font-weight:900;
+    }
+
+    .tecnica-card p{
+      font-size:17px;
+      line-height:1.4;
+      font-weight:700;
+      color:white;
+    }
+
+    .rosa{background:#ff0066;}
+    .naranja{background:#ff7a00;}
+    .violeta{background:#6c00ff;}
+    .azul{background:#0099ff;}
+
+    .principios{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:22px;
+      margin-top:25px;
+    }
+
+    .card{
+      border:5px solid black;
+      box-shadow:7px 7px 0 black;
+      padding:22px;
+      min-height:135px;
+      box-sizing:border-box;
+    }
+
+    .card h3{
+      font-size:19px;
+      font-weight:900;
+      margin:0 0 12px;
+    }
+
+    .card p{
+      font-size:15px;
+      line-height:1.4;
+      font-weight:700;
+      margin:0;
+    }
+
+    .principios .card:nth-child(1){
+      background:
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.14) 0 8px, transparent 8px 16px),
+        #ff0066;
+      color:black;
+    }
+
+    .principios .card:nth-child(2){
+      background:
+        radial-gradient(circle, rgba(255,255,255,0.25) 2px, transparent 3px),
+        #ff7a00;
+      background-size:18px 18px;
+      color:black;
+    }
+
+    .principios .card:nth-child(3){
+      background:
+        repeating-linear-gradient(-45deg, rgba(0,0,0,0.08) 0 7px, transparent 7px 14px),
+        #ffe600;
+      color:black;
+    }
+
+    .principios .card:nth-child(4){
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,0.20), transparent 70%),
+        #6c00ff;
+      color:white;
+    }
+
+    .principios .card:nth-child(5){
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.16) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.16) 50%, rgba(255,255,255,0.16) 75%, transparent 75%),
+        #0099ff;
+      background-size:28px 28px;
+      color:white;
+    }
+
+    .principios .card:nth-child(6){
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.25), transparent 55%),
+        #ff0066;
+      color:black;
+    }
+
+    .modal-img{
+      display:none;
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.85);
+      justify-content:center;
+      align-items:center;
+      z-index:9999;
+    }
+
+    .modal-img img{
+      max-width:70%;
+      max-height:80%;
+      border:8px solid white;
+      box-shadow:12px 12px 0 #ff0066;
+      background:white;
+    }
+
+    .cerrar-modal{
+      position:absolute;
+      top:28px;
+      right:42px;
+      font-size:48px;
+      color:white;
+      font-weight:900;
+      cursor:pointer;
+    }
+
+    .footer-retro{
+      background:
+        radial-gradient(circle, rgba(255,255,255,0.18) 2px, transparent 3px),
+        linear-gradient(135deg,#111 0%,#111 45%,#ff005c 45%,#ff005c 55%,#111 55%);
+      background-size:18px 18px,100% 100%;
+      color:white;
+      padding:50px 45px 25px;
+      border-top:10px solid black;
+      box-shadow:0 -10px 0 #ffe600;
+    }
+
+    .footer-top{
+      display:grid;
+      grid-template-columns:1.5fr 1fr 1fr 1.2fr;
+      gap:35px;
+      align-items:start;
+    }
+
+    .footer-brand h2{
+      font-size:58px;
+      margin:10px 0;
+      color:#ffe600;
+      font-weight:900;
+      text-shadow:
+        4px 4px 0 #ff005c,
+        8px 8px 0 #0099ff,
+        12px 12px 0 black;
+    }
+
+    .footer-brand p,
+    .footer-info p{
+      font-weight:800;
+      line-height:1.5;
+    }
+
+    .footer-sticker{
+      display:inline-block;
+      background:#ffe600;
+      color:black;
+      padding:10px 18px;
+      border:4px solid white;
+      box-shadow:6px 6px 0 #0099ff;
+      font-weight:900;
+      transform:rotate(-6deg);
+    }
+
+    .footer-info h3{
+      color:#ffe600;
+      border-bottom:4px solid #ff005c;
+      display:inline-block;
+    }
+
+    .footer-info a{
+      display:block;
+      text-decoration:none;
+      color:white;
+      font-weight:900;
+      margin:10px 0;
+    }
+
+    .footer-info a:hover{
+      color:#ffe600;
+    }
+
+    .footer-frase-retro{
+      background:#0099ff;
+      border:5px solid white;
+      box-shadow:10px 10px 0 #ffe600;
+      padding:22px;
+      transform:rotate(2deg);
+    }
+
+    .footer-frase-retro p{
+      margin:0;
+      font-size:20px;
+      font-weight:900;
+    }
+
+    .footer-bottom{
+      margin-top:40px;
+      border-top:4px dashed #ffe600;
+      padding-top:18px;
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      font-weight:900;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="menu">
+  <a href="index.html">INICIO</a>
+  <a href="definicion.html">DEFINICIÓN</a>
+  <a href="artistas.html">ARTISTAS</a>
+  <a href="tecnicas.html">TÉCNICAS</a>
+  <a href="galeria.html">GALERÍA</a>
+  <a href="contacto.php">CREÁ</a>
+  <a href="login.php" class="mini-login">Iniciar sesión / Registrarse</a>
+</nav>
+
+<section class="seccion">
+
+  <h2>TÉCNICAS DEL POP ART</h2>
+
+  <h3 class="subtitulo">MÉTODOS DE PRODUCCIÓN</h3>
+
+  <div class="tecnica-card rosa">
+    <img src="img/serigrafia.jpg" alt="Serigrafía" onclick="abrirImagen(this.src)">
+    <div>
+      <h3>SERIGRAFÍA</h3>
+      <p>Permite imprimir colores en capas y crear múltiples variaciones de una misma imagen. Andy Warhol la popularizó.</p>
+    </div>
+  </div>
+
+  <div class="tecnica-card naranja">
+    <img src="img/benday.jpg" alt="Técnica Ben Day" onclick="abrirImagen(this.src)">
+    <div>
+      <h3>TÉCNICA BEN DAY</h3>
+      <p>Patrón de puntos pequeños que genera tonos continuos desde lejos. Fue muy usada por Roy Lichtenstein.</p>
+    </div>
+  </div>
+
+  <div class="tecnica-card violeta">
+    <img src="img/collage.jpg" alt="Collage" onclick="abrirImagen(this.src)">
+    <div>
+      <h3>COLLAGE Y ENSAMBLAJE</h3>
+      <p>Combina fotografías, publicidad, recortes y objetos encontrados para transformar lo cotidiano en arte.</p>
+    </div>
+  </div>
+
+  <div class="tecnica-card azul">
+    <img src="img/acrilico.jpg" alt="Pintura acrílica" onclick="abrirImagen(this.src)">
+    <div>
+      <h3>PINTURA ACRÍLICA</h3>
+      <p>Usa pigmentos brillantes sobre lienzo para lograr colores saturados y superficies uniformes.</p>
+    </div>
+  </div>
+
+  <div class="tecnica-card violeta">
+    <img src="img/escultura.jpg" alt="Escultura blanda" onclick="abrirImagen(this.src)">
+    <div>
+      <h3>ESCULTURA Y OBJETOS BLANDOS</h3>
+      <p>Claes Oldenburg transformó objetos comunes en esculturas gigantes, muchas veces hechas con materiales blandos.</p>
+    </div>
+  </div>
+
+  <h3 class="subtitulo">PRINCIPIOS DE COMPOSICIÓN</h3>
+
+  <div class="principios">
+    <div class="card">
+      <h3>REPETICIÓN</h3>
+      <p>La misma imagen se repite muchas veces, como en la producción industrial.</p>
+    </div>
+
+    <div class="card">
+      <h3>ESCALA MONUMENTAL</h3>
+      <p>Objetos cotidianos llevados a tamaños enormes para generar impacto visual.</p>
+    </div>
+
+    <div class="card">
+      <h3>COLORES PLANOS</h3>
+      <p>Superficies de color uniforme, sin degradados ni sombras.</p>
+    </div>
+
+    <div class="card">
+      <h3>CONTORNOS NEGROS</h3>
+      <p>Líneas gruesas que delimitan formas, tomadas del cómic y la impresión.</p>
+    </div>
+
+    <div class="card">
+      <h3>YUXTAPOSICIÓN</h3>
+      <p>Contraste entre elementos de alta cultura y cultura popular.</p>
+    </div>
+
+    <div class="card">
+      <h3>FOTOGRAFÍA</h3>
+      <p>Uso de fotos públicas como base para obras pintadas o serigrafiadas.</p>
+    </div>
+  </div>
+
+</section>
+
+<div class="modal-img" id="modalImg" onclick="cerrarImagen()">
+  <span class="cerrar-modal">✕</span>
+  <img id="imagenGrande">
+</div>
+
+<footer class="footer-retro">
+
+  <div class="footer-top">
+
+    <div class="footer-brand">
+      <span class="footer-sticker">WOW!</span>
+
+      <h2>POP ART</h2>
+
+      <p>
+        Conocé las técnicas y recursos visuales que hicieron del Pop Art
+        un lenguaje gráfico potente, repetitivo y lleno de color.
+      </p>
+    </div>
+
+    <div class="footer-info">
+      <h3>EXPLORÁ</h3>
+
+      <a href="index.html">Inicio</a>
+      <a href="definicion.html">Definición</a>
+      <a href="artistas.html">Artistas</a>
+      <a href="tecnicas.html">Técnicas</a>
+      <a href="galeria.html">Galería</a>
+      <a href="contacto.php">Creá</a>
+    </div>
+
+    <div class="footer-info">
+      <h3>TÉCNICAS CLAVE</h3>
+
+      <p>🖨️ Serigrafía</p>
+      <p>🔵 Puntos Ben-Day</p>
+      <p>✂️ Collage</p>
+      <p>🎨 Acrílico</p>
+      <p>💥 Contornos gruesos</p>
+    </div>
+
+    <div class="footer-frase-retro">
+      <p>
+        “El color, la repetición y el impacto visual son parte del lenguaje Pop.”
+      </p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>🎨 Pop Art Explorer — Técnicas, procesos y composición visual</p>
+    <p>© 2024 | Proyecto web</p>
+  </div>
+
+</footer>
+
+<script>
+  function abrirImagen(src){
+    document.getElementById("modalImg").style.display = "flex";
+    document.getElementById("imagenGrande").src = src;
+  }
+
+  function cerrarImagen(){
+    document.getElementById("modalImg").style.display = "none";
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pop Art</title>
+
+  <style>
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:#ffe600;
+    }
+
+    .header{
+      background:linear-gradient(90deg,#ff005c,#ff7a00,#ffe600,#7300ff,#0099ff);
+      padding:60px 20px;
+      text-align:center;
+    }
+
+    .header h1{
+      font-size:90px;
+      margin:0;
+      color:black;
+      font-weight:900;
+      text-shadow:8px 8px 0px #ff005c;
+    }
+
+    .header p{
+      font-size:22px;
+      color:white;
+      font-weight:bold;
+      text-shadow:3px 3px 0 black;
+    }
+
+    .menu{
+      background:black;
+      padding:25px;
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .menu a{
+      text-decoration:none;
+      color:white;
+      background:#ff0066;
+      padding:16px 28px;
+      font-weight:900;
+      border:4px solid black;
+      box-shadow:7px 7px 0 #ffe600;
+      font-size:18px;
+    }
+
+    .menu a:nth-child(2){background:#ff7a00;}
+    .menu a:nth-child(3){background:#ffe600;color:black;}
+    .menu a:nth-child(4){background:#6c00ff;}
+    .menu a:nth-child(5){background:#0099ff;}
+    .menu a:nth-child(6){background:#ff0066;}
+
+    .mini-login{
+      background:white !important;
+      color:black !important;
+      font-size:15px !important;
+    }
+
+    .buscador{
+      background:black;
+      padding:22px;
+      text-align:center;
+      border-top:4px solid #ffe600;
+      border-bottom:6px solid #ff005c;
+    }
+
+    .buscador input{
+      width:55%;
+      max-width:520px;
+      padding:14px;
+      border:4px solid black;
+      font-size:15px;
+      font-weight:900;
+      box-shadow:6px 6px 0 #0099ff;
+    }
+
+    .buscador button{
+      padding:14px 24px;
+      margin-left:10px;
+      background:#ff005c;
+      color:white;
+      border:4px solid black;
+      box-shadow:6px 6px 0 #ffe600;
+      font-weight:900;
+      cursor:pointer;
+    }
+
+    .historia-pop{
+      padding:70px 12%;
+      text-align:center;
+      border-bottom:6px solid black;
+      background:
+        radial-gradient(circle, rgba(0,0,0,0.18) 2px, transparent 3px),
+        #ffe600;
+      background-size:22px 22px;
+    }
+
+    .historia-card{
+      max-width:950px;
+      margin:auto;
+      background:white;
+      border:6px solid black;
+      box-shadow:12px 12px 0 #ff005c;
+      padding:40px 45px;
+    }
+
+    .historia-card p{
+      font-size:21px;
+      line-height:1.6;
+      font-weight:900;
+      margin:0;
+      color:black;
+    }
+
+    .pilares{
+      padding:50px 8% 70px;
+      background:
+        radial-gradient(circle, rgba(0,0,0,0.16) 2px, transparent 3px),
+        #ffe600;
+      background-size:22px 22px;
+    }
+
+    .pilares h2{
+      text-align:center;
+      font-size:42px;
+      margin:0 0 40px;
+      font-weight:900;
+      color:black;
+    }
+
+    .pilares-grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:22px;
+    }
+
+    .pilar-card{
+      border:5px solid black;
+      box-shadow:8px 8px 0 black;
+      overflow:hidden;
+      cursor:pointer;
+      transition:transform 0.2s;
+      background:white;
+      aspect-ratio:1 / 1;
+    }
+
+    .pilar-card:hover{
+      transform:translateY(-6px);
+    }
+
+    .pilar-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .modal{
+      display:none;
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.75);
+      justify-content:center;
+      align-items:center;
+      z-index:999;
+    }
+
+    .modal-contenido{
+      background:#ffe600;
+      border:6px solid black;
+      box-shadow:12px 12px 0 #ff005c;
+      padding:35px;
+      max-width:620px;
+      text-align:center;
+    }
+
+    .modal-contenido h2{
+      font-size:36px;
+      margin-top:0;
+      font-weight:900;
+    }
+
+    .modal-contenido p{
+      font-size:20px;
+      line-height:1.5;
+      font-weight:700;
+    }
+
+    .cerrar{
+      background:#ff005c;
+      color:white;
+      border:4px solid black;
+      box-shadow:5px 5px 0 black;
+      padding:12px 25px;
+      font-weight:900;
+      cursor:pointer;
+    }
+
+    .footer-retro{
+      background:
+        radial-gradient(circle, rgba(255,255,255,0.18) 2px, transparent 3px),
+        linear-gradient(135deg,#111 0%,#111 45%,#ff005c 45%,#ff005c 55%,#111 55%);
+      background-size:18px 18px,100% 100%;
+      color:white;
+      padding:50px 45px 25px;
+      border-top:10px solid black;
+      box-shadow:0 -10px 0 #ffe600;
+    }
+
+    .footer-top{
+      display:grid;
+      grid-template-columns:1.5fr 1fr 1fr 1.2fr;
+      gap:35px;
+      align-items:start;
+    }
+
+    .footer-brand h2{
+      font-size:58px;
+      margin:10px 0;
+      color:#ffe600;
+      font-weight:900;
+      text-shadow:
+        4px 4px 0 #ff005c,
+        8px 8px 0 #0099ff,
+        12px 12px 0 black;
+    }
+
+    .footer-brand p,
+    .footer-info p{
+      font-weight:800;
+      line-height:1.5;
+    }
+
+    .footer-sticker{
+      display:inline-block;
+      background:#ffe600;
+      color:black;
+      padding:10px 18px;
+      border:4px solid white;
+      box-shadow:6px 6px 0 #0099ff;
+      font-weight:900;
+      transform:rotate(-6deg);
+    }
+
+    .footer-info h3{
+      color:#ffe600;
+      border-bottom:4px solid #ff005c;
+      display:inline-block;
+    }
+
+    .footer-info a{
+      display:block;
+      text-decoration:none;
+      color:white;
+      font-weight:900;
+      margin:10px 0;
+    }
+
+    .footer-info a:hover{
+      color:#ffe600;
+    }
+
+    .footer-frase-retro{
+      background:#0099ff;
+      border:5px solid white;
+      box-shadow:10px 10px 0 #ffe600;
+      padding:22px;
+      transform:rotate(2deg);
+    }
+
+    .footer-frase-retro p{
+      margin:0;
+      font-size:20px;
+      font-weight:900;
+    }
+
+    .footer-bottom{
+      margin-top:40px;
+      border-top:4px dashed #ffe600;
+      padding-top:18px;
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      font-weight:900;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <h1>POP ART</h1>
+    <p>La Revolución del Color y la Cultura de Masas</p>
+  </header>
+
+  <nav class="menu">
+
+    <a href="index.html">INICIO</a>
+    <a href="definicion.html">DEFINICIÓN</a>
+    <a href="artistas.html">ARTISTAS</a>
+    <a href="tecnicas.html">TÉCNICAS</a>
+    <a href="galeria.html">GALERÍA</a>
+    <a href="contacto.php">CREÁ</a>
+
+    <a href="login.php" class="mini-login">
+      Iniciar sesión / Registrarse
+    </a>
+
+  </nav>
+
+  <form class="buscador" action="buscar.php" method="GET">
+    <input
+      type="text"
+      name="q"
+      placeholder="Buscar artistas, obras, técnicas o palabras clave..."
+      required
+    >
+
+    <button type="submit">
+      🔍 Buscar
+    </button>
+  </form>
+
+  <section class="historia-pop">
+
+    <div class="historia-card">
+
+      <p>
+        El Pop Art nació en los años 50 y revolucionó la manera de entender el arte.
+        Inspirado en la cultura popular, la publicidad y los medios de comunicación,
+        convirtió objetos cotidianos en íconos visuales.
+        Con colores vibrantes, repetición y estética gráfica,
+        rompió los límites entre el arte y el consumo masivo,
+        dejando una influencia que continúa presente
+        en el diseño contemporáneo.
+      </p>
+
+    </div>
+
+  </section>
+
+  <section class="pilares">
+
+    <h2>LOS 5 PILARES VISUALES DEL POP ART</h2>
+
+    <div class="pilares-grid">
+
+      <div class="pilar-card"
+      onclick="abrirModal('COLOR BRUTAL',
+      'El Pop Art utiliza colores intensos y saturados inspirados en la publicidad y los cómics.')">
+
+        <img src="img/1.jpg" alt="Color Brutal">
+
+      </div>
+
+      <div class="pilar-card"
+      onclick="abrirModal('REPETICIÓN',
+      'La repetición muestra una misma imagen muchas veces, como si fuera una producción en serie.')">
+
+        <img src="img/2.jpg" alt="Repetición">
+
+      </div>
+
+      <div class="pilar-card"
+      onclick="abrirModal('CONTORNO NEGRO',
+      'Las líneas negras gruesas vienen del lenguaje visual del cómic y ayudan a definir formas.')">
+
+        <img src="img/3.jpg" alt="Contorno Negro">
+
+      </div>
+
+      <div class="pilar-card"
+      onclick="abrirModal('ESCALA',
+      'El Pop Art agranda objetos cotidianos para convertirlos en protagonistas visuales.')">
+
+        <img src="img/4.jpg" alt="Escala">
+
+      </div>
+
+      <div class="pilar-card"
+      onclick="abrirModal('CULTURA',
+      'El Pop Art toma elementos de la cultura popular: consumo, famosos y publicidad.')">
+
+        <img src="img/5.jpg" alt="Cultura">
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="modal" id="modal">
+
+    <div class="modal-contenido">
+
+      <h2 id="modal-titulo"></h2>
+
+      <p id="modal-texto"></p>
+
+      <button class="cerrar" onclick="cerrarModal()">
+        CERRAR
+      </button>
+
+    </div>
+
+  </div>
+
+  <footer class="footer-retro">
+
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <span class="footer-sticker">WOW!</span>
+
+        <h2>POP ART</h2>
+
+        <p>
+          Un recorrido visual por el color, la cultura de masas,
+          la publicidad, los cómics y los íconos que transformaron
+          el arte moderno.
+        </p>
+      </div>
+
+      <div class="footer-info">
+        <h3>EXPLORÁ</h3>
+
+        <a href="index.html">Inicio</a>
+        <a href="definicion.html">Definición</a>
+        <a href="artistas.html">Artistas</a>
+        <a href="tecnicas.html">Técnicas</a>
+        <a href="galeria.html">Galería</a>
+        <a href="contacto.php">Creá</a>
+      </div>
+
+      <div class="footer-info">
+        <h3>PILARES VISUALES</h3>
+
+        <p>💥 Color intenso</p>
+        <p>🔁 Repetición</p>
+        <p>🖤 Contorno negro</p>
+        <p>📏 Escala exagerada</p>
+        <p>📺 Cultura popular</p>
+      </div>
+
+      <div class="footer-frase-retro">
+        <p>
+          “El Pop Art convirtió lo cotidiano en imagen icónica.”
+        </p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>🎨 Pop Art Explorer — Diseño, cultura de masas y revolución visual</p>
+      <p>© 2024 | Proyecto web</p>
+    </div>
+
+  </footer>
+
+  <script>
+
+    function abrirModal(titulo, texto){
+
+      document.getElementById("modal-titulo").innerText = titulo;
+
+      document.getElementById("modal-texto").innerText = texto;
+
+      document.getElementById("modal").style.display = "flex";
+    }
+
+    function cerrarModal(){
+
+      document.getElementById("modal").style.display = "none";
+    }
+
+  </script>
+
+</body>
+</html>
+

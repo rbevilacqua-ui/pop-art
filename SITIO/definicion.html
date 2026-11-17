@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Definición - Pop Art</title>
+
+  <style>
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background-color:#ffe600;
+      background-image:
+      radial-gradient(circle at 20% 20%, rgba(255,0,92,0.13) 0 5px, transparent 6px),
+      radial-gradient(circle at 80% 30%, rgba(0,153,255,0.13) 0 5px, transparent 6px),
+      radial-gradient(circle at 40% 70%, rgba(108,0,255,0.13) 0 5px, transparent 6px),
+      radial-gradient(circle at 70% 80%, rgba(255,122,0,0.13) 0 5px, transparent 6px);
+      background-size:110px 110px;
+    }
+
+    .menu{
+      background:black;
+      padding:20px;
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    .menu a{
+      text-decoration:none;
+      color:white;
+      background:#ff0066;
+      padding:13px 22px;
+      font-weight:900;
+      border:4px solid black;
+      box-shadow:5px 5px 0 #ffe600;
+      font-size:15px;
+    }
+
+    .menu a:nth-child(2){background:#ff7a00;}
+    .menu a:nth-child(3){background:#ffe600;color:black;}
+    .menu a:nth-child(4){background:#6c00ff;}
+    .menu a:nth-child(5){background:#0099ff;}
+    .menu a:nth-child(6){background:#ff0066;}
+
+    .mini-login{
+      background:white !important;
+      color:black !important;
+      font-size:13px !important;
+    }
+
+    .seccion{
+      padding:45px 6%;
+    }
+
+    h2{
+      font-size:32px;
+      font-weight:900;
+      color:black;
+      border-bottom:5px solid black;
+      padding-bottom:10px;
+      margin:0 0 28px;
+    }
+
+    .definicion-principal{
+      background:white;
+      border:5px solid black;
+      box-shadow:7px 7px 0 #ff0066;
+      padding:24px 30px;
+      text-align:center;
+      max-width:700px;
+      margin:0 auto 40px;
+      position:relative;
+    }
+
+    .definicion-principal::before{
+      content:"POP!";
+      position:absolute;
+      top:-22px;
+      left:25px;
+      background:#0099ff;
+      color:white;
+      border:3px solid black;
+      box-shadow:4px 4px 0 black;
+      padding:6px 18px;
+      font-size:22px;
+      font-weight:900;
+    }
+
+    .definicion-principal p{
+      font-size:15px;
+      line-height:1.6;
+      font-weight:800;
+      margin:0 0 14px;
+      color:black;
+    }
+
+    .imagen-definicion{
+      max-width:760px;
+      margin:0 auto 55px;
+      border:5px solid black;
+      box-shadow:8px 8px 0 #ff0066;
+      overflow:hidden;
+    }
+
+    .imagen-definicion img{
+      width:100%;
+      height:300px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .bloque-violeta{
+      background:#6c00ff;
+      color:white;
+      border:5px solid black;
+      box-shadow:8px 8px 0 black;
+      padding:28px;
+      display:grid;
+      grid-template-columns:1.1fr 1fr;
+      gap:28px;
+      align-items:center;
+      margin-bottom:55px;
+    }
+
+    .bloque-violeta h3{
+      font-size:22px;
+      margin-top:0;
+    }
+
+    .bloque-violeta p{
+      font-size:15px;
+      line-height:1.5;
+      font-weight:700;
+    }
+
+    .bloque-violeta img{
+      width:100%;
+      height:190px;
+      object-fit:cover;
+      border:4px solid black;
+      background:white;
+    }
+
+    .influencias{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+    }
+
+    .card{
+      border:5px solid black;
+      box-shadow:7px 7px 0 black;
+      padding:18px;
+      background:#ff0066;
+    }
+
+    .card:nth-child(2){background:#ff7a00;}
+    .card:nth-child(3){background:#ffe600;}
+    .card:nth-child(4){background:#6c00ff;color:white;}
+    .card:nth-child(5){background:#0099ff;color:white;}
+    .card:nth-child(6){background:#ff0066;}
+
+    .card img{
+      width:100%;
+      height:130px;
+      object-fit:cover;
+      border:4px solid black;
+      margin-bottom:15px;
+      display:block;
+    }
+
+    .card h3{
+      font-size:18px;
+      margin:0 0 10px;
+      font-weight:900;
+    }
+
+    .card p{
+      font-size:14px;
+      line-height:1.4;
+      font-weight:700;
+    }
+
+    .footer-retro{
+      background:
+        radial-gradient(circle, rgba(255,255,255,0.18) 2px, transparent 3px),
+        linear-gradient(135deg,#111 0%,#111 45%,#ff005c 45%,#ff005c 55%,#111 55%);
+      background-size:18px 18px,100% 100%;
+      color:white;
+      padding:50px 45px 25px;
+      border-top:10px solid black;
+      box-shadow:0 -10px 0 #ffe600;
+    }
+
+    .footer-top{
+      display:grid;
+      grid-template-columns:1.5fr 1fr 1fr 1.2fr;
+      gap:35px;
+      align-items:start;
+    }
+
+    .footer-brand h2{
+      font-size:58px;
+      margin:10px 0;
+      color:#ffe600;
+      font-weight:900;
+      text-shadow:
+        4px 4px 0 #ff005c,
+        8px 8px 0 #0099ff,
+        12px 12px 0 black;
+    }
+
+    .footer-brand p,
+    .footer-info p{
+      font-weight:800;
+      line-height:1.5;
+    }
+
+    .footer-sticker{
+      display:inline-block;
+      background:#ffe600;
+      color:black;
+      padding:10px 18px;
+      border:4px solid white;
+      box-shadow:6px 6px 0 #0099ff;
+      font-weight:900;
+      transform:rotate(-6deg);
+    }
+
+    .footer-info h3{
+      color:#ffe600;
+      border-bottom:4px solid #ff005c;
+      display:inline-block;
+    }
+
+    .footer-info a{
+      display:block;
+      text-decoration:none;
+      color:white;
+      font-weight:900;
+      margin:10px 0;
+    }
+
+    .footer-info a:hover{
+      color:#ffe600;
+    }
+
+    .footer-frase-retro{
+      background:#0099ff;
+      border:5px solid white;
+      box-shadow:10px 10px 0 #ffe600;
+      padding:22px;
+      transform:rotate(2deg);
+    }
+
+    .footer-frase-retro p{
+      margin:0;
+      font-size:20px;
+      font-weight:900;
+    }
+
+    .footer-bottom{
+      margin-top:40px;
+      border-top:4px dashed #ffe600;
+      padding-top:18px;
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      font-weight:900;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <nav class="menu">
+    <a href="index.html">INICIO</a>
+    <a href="definicion.html">DEFINICIÓN</a>
+    <a href="artistas.html">ARTISTAS</a>
+    <a href="tecnicas.html">TÉCNICAS</a>
+    <a href="galeria.html">GALERÍA</a>
+    <a href="contacto.php">CREÁ</a>
+    <a href="login.php" class="mini-login">Iniciar sesión / Registrarse</a>
+  </nav>
+
+  <section class="seccion">
+
+    <h2>¿QUÉ ES EL POP ART?</h2>
+
+    <div class="definicion-principal">
+      <p>
+        El Pop Art fue un movimiento artístico surgido en Gran Bretaña y Estados Unidos durante las décadas de 1950 y 1960.
+      </p>
+
+      <p>
+        Incorporó imágenes de la cultura de masas, la publicidad, los cómics y los productos comerciales para transformarlos en arte.
+      </p>
+
+      <p>
+        Utilizó colores intensos, repetición y recursos gráficos inspirados en los medios de comunicación.
+      </p>
+
+      <p>
+        Su influencia continúa presente en el diseño gráfico, la moda y la publicidad contemporánea.
+      </p>
+    </div>
+
+    <div class="imagen-definicion">
+      <img src="img/popart-def.jpg" alt="Imagen Pop Art">
+    </div>
+
+    <h2>ORIGEN DEL TÉRMINO</h2>
+
+    <div class="bloque-violeta">
+
+      <div>
+        <h3>¿DE DÓNDE VIENE “POP”?</h3>
+
+        <p>
+          La palabra “Pop” proviene de “popular” y hace referencia a la cultura cotidiana y los medios masivos.
+        </p>
+
+        <p>
+          El término se utilizó para describir obras inspiradas en imágenes accesibles y comerciales.
+        </p>
+      </div>
+
+      <img src="img/popart-origen.jpg" alt="Origen del Pop Art">
+
+    </div>
+
+    <h2>INFLUENCIAS DEL POP ART</h2>
+
+    <div class="influencias">
+
+      <div class="card">
+        <img src="img/pub.jpg">
+        <h3>PUBLICIDAD</h3>
+        <p>Anuncios y carteles fueron inspiración visual directa.</p>
+      </div>
+
+      <div class="card">
+        <img src="img/comic.jpg">
+        <h3>CÓMICS</h3>
+        <p>Viñetas y líneas negras marcaron su estética.</p>
+      </div>
+
+      <div class="card">
+        <img src="img/celebs.jpg">
+        <h3>CELEBRIDADES</h3>
+        <p>Figuras famosas se transformaron en íconos visuales.</p>
+      </div>
+
+      <div class="card">
+        <img src="img/productos.jpg">
+        <h3>PRODUCTOS</h3>
+        <p>Objetos cotidianos ocuparon el centro de la obra.</p>
+      </div>
+
+      <div class="card">
+        <img src="img/dinero.jpg">
+        <h3>DINERO</h3>
+        <p>Representa la sociedad de consumo y el mercado.</p>
+      </div>
+
+      <div class="card">
+        <img src="img/cultura.jpg">
+        <h3>CULTURA DE MASAS</h3>
+        <p>Los medios populares forman parte de su lenguaje visual.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer class="footer-retro">
+
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <span class="footer-sticker">WOW!</span>
+
+        <h2>POP ART</h2>
+
+        <p>
+          Descubrí qué es el Pop Art, sus orígenes, influencias,
+          referentes visuales y el impacto que tuvo en el diseño,
+          la publicidad y la cultura popular.
+        </p>
+      </div>
+
+      <div class="footer-info">
+        <h3>EXPLORÁ</h3>
+
+        <a href="index.html">Inicio</a>
+        <a href="definicion.html">Definición</a>
+        <a href="artistas.html">Artistas</a>
+        <a href="tecnicas.html">Técnicas</a>
+        <a href="galeria.html">Galería</a>
+        <a href="contacto.php">Creá</a>
+      </div>
+
+      <div class="footer-info">
+        <h3>CONCEPTOS CLAVE</h3>
+
+        <p>💥 Cultura de masas</p>
+        <p>🖼️ Publicidad</p>
+        <p>🎨 Colores vibrantes</p>
+        <p>⭐ Celebridades</p>
+        <p>📚 Lenguaje visual</p>
+      </div>
+
+      <div class="footer-frase-retro">
+        <p>
+          “El Pop Art transformó lo cotidiano en algo icónico.”
+        </p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>🎨 Pop Art Explorer — Sitio educativo sobre arte y cultura visual</p>
+      <p>© 2024 | Proyecto web</p>
+    </div>
+
+  </footer>
+
+</body>
+</html>
